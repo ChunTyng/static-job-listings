@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+@layer base {
+  html {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  li,
+  ol,
+  figure,
+  span,
+  button {
+    margin: 0;
+    padding-top: 5px;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer components {
+  .filter-btn {
+    @apply bg-(--color-surface) px-3 py-1 pt-2 text-(--color-primary);
+  }
+}
+
+@layer utilities {
+  .header-bg {
+    background-color: var(--color-primary);
+  }
+
+  @media (min-width: 768px) {
+    .header-bg {
+      background-image: url('./assets/images/bg-header-desktop.svg');
+    }
+  }
+}
+
+@theme {
+  /* colors */
+  --color-primary: hsl(180, 29%, 50%);
+  /* Background */
+  --color-bg: hsl(180, 52%, 96%);
+  /* Filter Tablets */
+  --color-surface: hsl(180, 31%, 95%);
+  --color-text-secondary: hsl(180, 8%, 52%);
+  --color-text-primary: hsl(180, 14%, 20%);
+
+  /* font weight */
+  --weight-500: 500;
+  --weight-700: 700;
+}
