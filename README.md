@@ -124,3 +124,11 @@ NEW!
 <!-- display error method -->
 
 [mobile](./design/mobile-design.jpg)
+
+<!--
+className={cn(
+        `py-6 px-6 bg-white rounded-md shadow-xl border-(--color-primary) max-h-120
+         -mt-24 mb-3 z-10 flex gap-5 justify-between duration-300 ease-in transition-all`,
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95',
+      )} -->
+<!-- scrollbar -->

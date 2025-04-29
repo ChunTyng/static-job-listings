@@ -5,6 +5,7 @@
     font-family: 'League Spartan', sans-serif;
     font-size: 15px;
     font-weight: 500;
+    background: var(--color-bg);
   }
 
   :focus {
@@ -32,6 +33,7 @@
   button {
     margin: 0;
     padding-top: 5px;
+    cursor: default;
   }
 
   img {
@@ -42,7 +44,8 @@
 
 @layer components {
   .filter-btn {
-    @apply bg-(--color-surface) px-3 py-1 pt-2 text-(--color-primary);
+    @apply bg-(--color-surface) px-3 py-1 pt-2 text-(--color-primary) hover:bg-(--color-primary)
+           hover:text-white rounded-sm hover:cursor-pointer;
   }
 }
 
