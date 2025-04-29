@@ -13,36 +13,7 @@ const useFetchData = () => {
   });
 
   // local
-  const API_URL = 'http://localhost:3500/';
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const stored = sessionStorage.getItem('job-listings');
-        if (stored) {
-          setData(JSON.parse(stored));
-        } else {
-          const ids = Array.from({ length: 10 }, (_, i) => i);
-          const responses = await Promise.all(
-            ids.map((id) => axios.get(`${API_URL}${id}`)),
-          );
-          const combinedData = responses.map((res) => res.data);
-          sessionStorage.setItem('job-listings', JSON.stringify(combinedData));
-          setData(JSON.parse(sessionStorage.getItem('job-listings') || '[]'));
-        }
-      } catch (error) {
-        console.error(error);
-        setStatus((prev) => ({ ...prev, error: 'something went wrong' }));
-        throw error;
-      } finally {
-        setStatus((prev) => ({ ...prev, loading: false }));
-      }
-    };
-    fetchData();
-  }, []);
-  return { data, status };
-
-  // deploy
-  // const API_URL = 'https://static-job-listings-json-server.onrender.com/data/';
+  // const API_URL = 'http://localhost:3500/';
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -50,13 +21,18 @@ const useFetchData = () => {
   //       if (stored) {
   //         setData(JSON.parse(stored));
   //       } else {
-  //         const response = await axios.get(API_URL);
-  //         setData(response.data);
-  //         sessionStorage.setItem('job-listings', JSON.stringify(response.data));
+  //         const ids = Array.from({ length: 10 }, (_, i) => i);
+  //         const responses = await Promise.all(
+  //           ids.map((id) => axios.get(`${API_URL}${id}`)),
+  //         );
+  //         const combinedData = responses.map((res) => res.data);
+  //         sessionStorage.setItem('job-listings', JSON.stringify(combinedData));
+  //         setData(JSON.parse(sessionStorage.getItem('job-listings') || '[]'));
   //       }
   //     } catch (error) {
-  //       console.log(error);
-  //       setStatus((prev) => ({ ...prev, error: 'Something went wrong' }));
+  //       console.error(error);
+  //       setStatus((prev) => ({ ...prev, error: 'something went wrong' }));
+  //       throw error;
   //     } finally {
   //       setStatus((prev) => ({ ...prev, loading: false }));
   //     }
@@ -64,5 +40,29 @@ const useFetchData = () => {
   //   fetchData();
   // }, []);
   // return { data, status };
+
+  // deploy
+  const API_URL = 'https://static-job-listings-json-server.onrender.com/data/';
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const stored = sessionStorage.getItem('job-listings');
+        if (stored) {
+          setData(JSON.parse(stored));
+        } else {
+          const response = await axios.get(API_URL);
+          setData(response.data);
+          sessionStorage.setItem('job-listings', JSON.stringify(response.data));
+        }
+      } catch (error) {
+        console.log(error);
+        setStatus((prev) => ({ ...prev, error: 'Something went wrong' }));
+      } finally {
+        setStatus((prev) => ({ ...prev, loading: false }));
+      }
+    };
+    fetchData();
+  }, []);
+  return { data, status };
 };
 export default useFetchData;
