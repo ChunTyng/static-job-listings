@@ -14,7 +14,10 @@ type ContentProps = {
 
 const Content = ({ data, status }: ContentProps) => {
   // useState
-  const [filters, setFilters] = useState<string[]>([]);
+  const [filters, setFilters] = useState<string[]>(() => {
+    const saved = sessionStorage.getItem('active-filters');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [removingTags, setRemovingTags] = useState<string[]>([]);
 
   if (status.loading) return <div className="text-3xl">Loading...</div>;

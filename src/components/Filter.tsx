@@ -1,5 +1,7 @@
 import { Transition } from '@headlessui/react';
 import { cn } from '../utils/cn';
+import { useEffect } from 'react';
+
 import iconRemove from '../assets/images/icon-remove.svg';
 
 type FilterProps = {
@@ -15,6 +17,10 @@ const Filter = ({
   addandRemoveTagToFilter,
   removingTags,
 }: FilterProps) => {
+  useEffect(() => {
+    sessionStorage.setItem('active-filters', JSON.stringify(filters));
+  }, [filters]);
+
   return (
     <section
       className={cn(
