@@ -46,7 +46,7 @@ const JobListings = ({ item, index, addandRemoveTagToFilter }: JobListings) => {
     >
       {/* logo */}
       <img
-        src={item.logo}
+        src={item.logo.replace('./', '/')}
         alt={`{item.company} logo`}
         className="w-13 h-13 absolute -top-7 md:relative md:top-0
                  md:w-17 md:h-17 
