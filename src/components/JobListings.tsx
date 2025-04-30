@@ -39,8 +39,8 @@ const JobListings = ({ item, index, addandRemoveTagToFilter }: JobListings) => {
   return (
     <section
       className={cn(
-        `p-6 bg-white relative rounded-md shadow-[0_1px_5px_1px_var(--color-text-secondary)] 
-          flex flex-col max-h-120 md:items-center md:flex-row md:gap-5`,
+        `p-6 bg-white relative rounded-md shadow-[0_1px_5px_1px_var(--color-primary)] 
+       border-(--color-primary) flex flex-col max-h-120 md:items-center md:flex-row md:gap-5`,
         item.new && item.featured ? 'border-l-5' : '',
       )}
     >
