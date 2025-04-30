@@ -28,8 +28,13 @@ const Filter = ({
          z-10 flex gap-5 justify-between min-h-[80px] transition-all duration-200`,
         filters.length > 0 ? 'opacity-100' : 'opacity-0',
       )}
+      aria-label="Job filters"
     >
-      <div className="flex gap-4 flex-wrap">
+      <div
+        className="flex gap-4 flex-wrap"
+        role="group"
+        aria-label="Active job filters"
+      >
         {filters.map((item) => (
           <Transition
             key={item}
@@ -46,6 +51,7 @@ const Filter = ({
             <div
               className="filter-btn flex items-center justify-center p-0 
                      hover:bg-(--color-surface) hover:text-(--color-primary)"
+              role="group"
             >
               <span className="px-2 pl-3">{item}</span>
               <img
@@ -56,6 +62,7 @@ const Filter = ({
                 onClick={() => {
                   addandRemoveTagToFilter(item);
                 }}
+                aria-label={`Remove filter ${item}`}
               />
             </div>
           </Transition>
@@ -67,6 +74,7 @@ const Filter = ({
         className="text-(--color-text-secondary) text-lg hover:underline 
                    hover:text-(--color-primary) hover:cursor-pointer"
         onClick={clearFilter}
+        aria-label="Clear all selected job filters"
       >
         Clear
       </button>

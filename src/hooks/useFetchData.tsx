@@ -51,8 +51,14 @@ const useFetchData = () => {
           setData(JSON.parse(stored));
         } else {
           const response = await axios.get(API_URL);
-          setData(response.data);
-          sessionStorage.setItem('job-listings', JSON.stringify(response.data));
+          const updatedData = response.data.map((item: fetchDataProps) => {
+            if (item.logo && !item.logo.startsWith('http')) {
+              item.logo = `${API_URL}${item.logo.replace('./', '')}`;
+            }
+            return item;
+          });
+          setData(updatedData);
+          sessionStorage.setItem('job-listings', JSON.stringify(updatedData));
         }
       } catch (error) {
         console.log(error);

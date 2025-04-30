@@ -20,8 +20,18 @@ const Content = ({ data, status }: ContentProps) => {
   });
   const [removingTags, setRemovingTags] = useState<string[]>([]);
 
-  if (status.loading) return <div className="text-3xl">Loading...</div>;
-  if (status.error) return <div>Error: {status.error}</div>;
+  if (status.loading)
+    return (
+      <div className="text-3xl" role="status" aria-live="polite">
+        Loading...
+      </div>
+    );
+  if (status.error)
+    return (
+      <div role="alert" aria-live="assertive">
+        Error: {status.error}
+      </div>
+    );
 
   // function
   const addAndRemoveTagToFilter = (tag: string) => {
@@ -35,9 +45,7 @@ const Content = ({ data, status }: ContentProps) => {
       }, 100);
     }
   };
-
   const clearFilter = () => setFilters([]);
-
   const filteredJobs = data.filter((item) => {
     if (filters.length === 0) return true;
     const propsToCheck = [
@@ -68,6 +76,7 @@ const Content = ({ data, status }: ContentProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
+            role="listitem"
           >
             <JobListings
               item={item}
